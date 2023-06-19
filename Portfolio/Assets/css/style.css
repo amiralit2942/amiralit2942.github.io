@@ -197,6 +197,7 @@ a:hover {
     border: solid 2px var(--color-brand);
     position: relative;
     background-color: var(--color-base);
+    cursor: pointer;
 }
 
 .skill-container img {
