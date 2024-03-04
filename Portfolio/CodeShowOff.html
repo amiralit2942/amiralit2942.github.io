@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoTween Editor</title>
+    <link rel="stylesheet" href="./Assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./Assets/css/aos.css">
+    <link rel="stylesheet" href="./Assets/css/style.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1 style="margin-top: 25px; margin-left: 25px;">DoTween Editor</h1>
+
+        <!-- Image Sample -->
+        <div class="row">
+            <div class="col-lg-6 py-5 d-flex justify-content-center"><img
+                    src="./Assets/Images/why-are-you-why-are-you-gay.gif" alt=""></div>
+            <div class="col-lg-6 py-5 d-flex justify-content-center"><img
+                    src="./Assets/Images/why-are-you-why-are-you-gay.gif" alt=""></div>
+        </div>
+
+        <!-- Code -->
+        <div style="margin-top: 50px; margin-left: 100px; margin-right: 100px;">
+            <p class="text-brand" style="font-size: 25px;">Code:</p>
+            <pre class="cscode"><code><span class="key">public</span> <span class="key">class</span> MoveTransition : UiTransition
+        {
+            [SerializeField] <span class="key">private</span> TransitionAction _transitionAction;
+            [SerializeField] <span class="key">private</span> TransitionActionMove _transitionActionMove;
+            [SerializeField] <span class="key">private</span> <span class="key">float</span> _tweenTime = 0.4f;
+            [SerializeField] <span class="key">private</span> Image _darkBg;
+    
+            <span class="key">protected</span> <span class="key">override</span> <span class="key">void</span> OnApply()
+            {
+                <span class="key">if</span> (_transitionAction == TransitionAction.Close)
+                    CloseSeq();
+                <span class="key">else</span>
+                    OpenSeq();
+            }
+    
+            <span class="key">private</span> <span class="key">void</span> CloseSeq()
+            {
+                <span class="key">var</span> seq = DOTween.Sequence();
+                <span class="key">switch</span> (_transitionActionMove)
+                {
+                    <span class="key">case</span> TransitionActionMove.Down:
+                        seq.Append(_darkBg?.DOFade(0, _tweenTime / 2)).Append(rectTransform.DOMoveY(-650, _tweenTime))
+                            .OnComplete(OnComplete);
+                        <span class="key">break</span>;
+                    <span class="key">case</span> TransitionActionMove.Left:
+                        seq.Append(_darkBg?.DOFade(0, _tweenTime / 2)).Append(rectTransform.DOMoveX(-1920, _tweenTime))
+                            .OnComplete(OnComplete);
+                        <span class="key">break</span>;
+                    <span class="key">case</span> TransitionActionMove.Right:
+       
+                        seq.Append(_darkBg?.DOFade(0, _tweenTime / 2)).Append(rectTransform.DOMoveX(1920, _tweenTime))
+                            .OnComplete(OnComplete);
+                        <span class="key">break</span>;
+                    <span class="key">case</span> TransitionActionMove.Top:
+                        seq.Append(_darkBg?.DOFade(0, _tweenTime / 2)).Append(rectTransform.DOMoveY(1686, _tweenTime))
+                            .OnComplete(OnComplete);
+                        <span class="key">break</span>;
+                }
+            }
+    
+            <span class="key">private</span> <span class="key">void</span> OpenSeq()
+            {
+                <span class="key">switch</span> (_transitionActionMove)
+                {
+                    <span class="key">case</span> TransitionActionMove.Down:
+                        rectTransform.anchoredPosition = <span class="key">new</span> Vector2(0, -1500);
+                        <span class="com">//seq.Append(rectTransform.DOMoveY(550, _tweenTime)).OnComplete(OnComplete);</span>
+                        <span class="key">break</span>;
+                    <span class="key">case</span> TransitionActionMove.Left:
+                        rectTransform.anchoredPosition = <span class="key">new</span> Vector2(-1500, 0);
+                        <span class="com">//seq.Append(rectTransform.DOMoveX(960, _tweenTime)).OnComplete(OnComplete);</span>
+                        <span class="key">break</span>;
+                    <span class="key">case</span> TransitionActionMove.Right:
+                        rectTransform.anchoredPosition = <span class="key">new</span> Vector2(1500, 0);
+                        <span class="com">// seq.Append(rectTransform.DOMoveX(960, _tweenTime)).OnComplete(OnComplete);</span>
+                        <span class="key">break</span>;
+                    <span class="key">case</span> TransitionActionMove.Top:
+                        rectTransform.anchoredPosition = <span class="key">new</span> Vector2(0, 1500);
+                        <span class="com">// seq.Append(rectTransform.DOMoveY(550, _tweenTime)).OnComplete(OnComplete);</span>
+                        <span class="key">break</span>;
+                }
+    
+                <span class="key">var</span> seq = DOTween.Sequence();
+                seq.Append(rectTransform.DOAnchorPos(<span class="key">new</span> Vector2(0,0), _tweenTime)).OnComplete(OnComplete);
+            }
+        }</code></pre>
+        </div>
+
+
+    </div>
+</body>
+
+</html>
